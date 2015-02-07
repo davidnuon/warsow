@@ -1,5 +1,8 @@
 # encoding: utf-8
 
+require 'json'
+
+
 module Warsow
   class Server
     attr_accessor :attributes, :rcon_password
@@ -25,7 +28,28 @@ module Warsow
 
     def rcon command
       @connection.transmit "rcon #{@options[:rcon]} #{command}"
-      @connection.read
+      return @connection.read
+    end
+
+    def get_players
+      status_out = (rcon 'status').split("\n")
+      player_list = status_out.slice(5, status_out.length).map do |x|
+        first_part = x[0..35].strip!.split(' ')
+        second_part = x[35..x.length].strip!.split(' ')
+         {
+          :id => first_part[0],
+          :score => first_part[1],
+          :ping => first_part[2],
+          :name => first_part[3],
+
+          :lastmsg => second_part[0],
+          :address => second_part[1],
+          :port => second_part[2],
+          :rate => second_part[3]
+        }
+      end
+
+      return player_list.to_json
     end
 
   private

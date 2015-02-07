@@ -4,9 +4,6 @@
 $:.unshift File.dirname(__FILE__) + '/../library'
 require 'warsow'
 
-Warsow.connect '10.0.0.20', 44400, rcon: '1234' do |server|
-  puts "Hostname: #{server.hostname}"
-
-  server.rcon 'sv_hostname "ACM LAN"'
-  server.rcon 'rcon status'
+Warsow.connect '10.0.0.20', 44400, rcon: '1234' do |server| 
+  puts (server.get_players)
 end
