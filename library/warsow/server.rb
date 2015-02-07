@@ -31,6 +31,10 @@ module Warsow
       return @connection.read
     end
 
+    def change_map map
+      (rcon "map \"#{map}\"")
+    end 
+
     def get_players
       status_out = (rcon 'status').split("\n")
       player_list = status_out.slice(5, status_out.length).map do |x|
