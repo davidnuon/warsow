@@ -8,7 +8,7 @@ before do
 end
 
 
- get '/hi' do
+ get '/status' do
  	result = ''
 	Warsow.connect '10.0.0.20', 44400, rcon: '1234' do |server| 
 		result = server.get_players
