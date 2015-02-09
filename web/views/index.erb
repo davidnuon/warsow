@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="/lib/angular-material/angular-material.min.css">
+	<link rel="stylesheet" href="/style.css">
+</head>
+<body ng-app="tabsDemo1">
+<div ng-controller="AppCtrl" class="tabsdemoStaticTabs">
+    <md-tabs class="md-accent" md-selected="data.selectedIndex">
+      <md-tab id="tab1" aria-controls="tab1-content">
+        Warsow Players Status
+      </md-tab>
+      <md-tab id="tab3" aria-controls="tab3-content">
+        Maps
+      </md-tab>
+    </md-tabs>
+    <ng-switch on="data.selectedIndex" class="tabpanel-container">
+        <div role="tabpanel"
+             id="tab1-content"
+             aria-labelledby="tab1"
+             ng-switch-when="0"
+             md-swipe-left="next()"
+             md-swipe-right="previous()" >
+     
+
+			<select name="" id="">
+				<option value="">What is this 01</option>
+				<option value="">What is this 02</option>
+				<option value="">What is this 03</option>
+				<option value="">What is this 04</option>
+			</select>
+
+     		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, nemo odio voluptatum reprehenderit ab molestias sed sunt adipisci quasi ducimus alias accusamus porro accusantium ad magnam repellat perspiciatis perferendis laudantium.</p>
+        </div>
+ 
+        <div role="tabpanel"
+             id="tab3-content"
+             aria-labelledby="tab3"
+             ng-switch-when="1"
+             md-swipe-left="next()"
+             md-swipe-right="previous()" >
+            View for Item #3<br/>
+            data.selectedIndex = 2
+        </div>
+    </ng-switch>
+    <div class="after-tabs-area" layout="row" layout-sm="column" layout-margin layout-align="left center">
+        <md-input-container>
+          <label for="selectedIndex">Selected Index</label>
+          <input type="number" id="selectedIndex" ng-model="data.selectedIndex">
+        </md-input-container>
+        <div flex></div>
+        <span>Item Two: </span>
+        <md-checkbox ng-model="data.secondLocked" aria-label="Disabled">
+          Disabled
+        </md-checkbox>
+    </div>
+</div>
+	<script src="/lib/angular/angular.min.js"></script>
+    <script src="/lib/angular-animate/angular-animate.min.js"></script>
+    <script src="/lib/angular-aria/angular-aria.min.js"></script>
+    <script src="/lib/angular-material/angular-material.min.js"></script>
+    <script src="/main.js"></script>
+</body>
+</html>
